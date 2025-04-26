@@ -1,13 +1,98 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<TargetFramework>net8.0</TargetFramework>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="about.html" />
+		<None Remove="cart.html" />
+		<None Remove="images\1.jpg" />
+		<None Remove="images\2.jpg" />
+		<None Remove="images\3.png" />
+		<None Remove="images\360_F_517530895_muDY3rc24PhyKHRyhEYqbI9P8opGRv3u.jpg" />
+		<None Remove="images\blue-t-shirt.jpg" />
+		<None Remove="images\folded-laundry.jpg" />
+		<None Remove="images\ins.png" />
+		<None Remove="images\pants.jpg" />
+		<None Remove="images\x.png" />
+		<None Remove="index.html" />
+		<None Remove="login.html" />
+		<None Remove="signup.html" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="about.html">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="cart.html">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="css\styles.css"/>
+		<Content Include="images\1.jpg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="images\2.jpg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="images\3.png">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="images\360_F_517530895_muDY3rc24PhyKHRyhEYqbI9P8opGRv3u.jpg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="images\blue-t-shirt.jpg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="images\folded-laundry.jpg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="images\ins.png">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="images\pants.jpg">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="images\x.png">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="index.html">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="login.html">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Include="scripts\cart.js" />
+		<Content Include="scripts\login.js" />
+		<Content Include="scripts\products.js" />
+		<Content Include="scripts\signup.js" />
+		<Content Include="signup.html">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.4" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
 
 </Project>
