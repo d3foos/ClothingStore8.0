@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shopping Cart - ITGN 350 Assignment</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<body class="page-bg">
+<div class="page-container">
+
+<!-- HEADER -->
+<header>
+    <nav class="navbar">
+        <a href="index.html" class="logo">ClothingShop</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
+        <a href="cart.html" class="cart-link">
+            <i class="fa fa-shopping-cart"></i>
+            <span id="cart-count">0</span>
+        </a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-text-box">
+        <main class="main-content">
+            <h1>Your Cart</h1>
+            <div id="cart-items"></div>
+            <h2 id="cart-total"></h2>
+        </main>
+    </div> 
+</section>
+
+
+
+
+<script>
+    // Load cart
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    const cartItemsDiv = document.getElementById('cart-items');
+    const cartTotalDiv = document.getElementById('cart-total');
+
+    if (cart.length === 0) {
+        cartItemsDiv.innerHTML = '<p>Your cart is empty.</p>';
+        cartTotalDiv.textContent = '';
+    } else {
+        let total = 0;
+        cartItemsDiv.innerHTML = '<ul>';
+        cart.forEach(item => {
+            total += item.price;
+            cartItemsDiv.innerHTML += `<li>${item.name} - $${item.price.toFixed(2)}</li>`;
+        });
+        cartItemsDiv.innerHTML += '</ul>';
+        cartTotalDiv.textContent = `Total: $${total.toFixed(2)}`;
+    }
+</script>
+<script>
+    // Load existing cart from localStorage or start fresh
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Update cart count on page load
+    document.getElementById('cart-count').textContent = cart.length;
+
+    // Add event listeners for add-to-cart buttons
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', () => {
+            const name = button.getAttribute('data-name');
+            const price = parseFloat(button.getAttribute('data-price'));
+
+            // Add to cart
+            cart.push({ name, price });
+
+            // Save updated cart
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Update cart count
+            document.getElementById('cart-count').textContent = cart.length;
+
+            console.log('Cart:', cart);
+        });
+    });
+</script>
+    <footer>
+        <p>&copy; 2025 ClothingShop. All rights reserved.</p>
+        <a href="https://instagram.com">
+            <img src="images/ins.png" alt=Instagram width="20" height="20"/>
+        </a>
+        <a href="https://x.com">
+            <img src="images/x.png" alt=x/twitter width="20" height="20"/>
+        </a>
+
+    </footer>
+
+</div> 
+</body>
+</html>

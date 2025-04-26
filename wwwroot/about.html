@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ITGN 350 Assignment</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<body class="about-bg">
+<div class="page-container">
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">ClothingShop</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Sign Up</a></li>
+        </ul>
+        <a href="cart.html" class="cart-link">
+            <i class="fa fa-shopping-cart"></i>
+            <span id="cart-count">0</span>
+        </a>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="text-box">
+        <header>
+            <h1>About ClothingShop</h1>
+        </header>
+
+        <p>April 25, 2025</p>
+
+        <h2>Welcome to our clothing brand's About Us page, where we take pride in offering premium fabrics that elevate your wardrobe.<br>
+            Dive into the story behind our brand and discover what sets us apart in the fashion industry.</h2>
+
+        <h2>What Sets Us Apart?</h2>
+        <p>Our brand stands out in the market due to our unwavering commitment to quality. We source only the finest fabrics, ensuring that each piece of clothing is not only stylish but also durable. In fact, 95% of our customers rave about the superior quality of our garments.</p>
+
+        <h2>Our Mission</h2>
+        <p>At the core of our brand is a mission to provide customers with clothing that not only looks good but feels good too. We believe that 80% of confidence comes from wearing comfortable, well-made clothing. That's why we prioritize premium fabrics in all our designs.</p>
+
+        <h2>Our Sustainability Efforts</h2>
+        <p>As a responsible clothing brand, we are dedicated to sustainability. 70% of our fabrics are sourced from eco-friendly materials, reducing our carbon footprint and promoting a greener future for fashion. Join us in our mission to make a positive impact on the environment.</p>
+
+        <h2>Our Team</h2>
+        <p>Behind every successful brand is a dedicated team, and we are no exception. Our designers, seamstresses, and customer service representatives work tirelessly to ensure that your experience with our brand is nothing short of exceptional. With a 99% customer satisfaction rate, you can trust that you are in good hands.</p>
+
+        <h2>Join the Movement</h2>
+        <p>Whether you're a fashion enthusiast or simply appreciate high-quality clothing, we invite you to be a part of our brand's journey. Explore our collection, read our customer reviews, and experience the luxury of premium fabrics for yourself. Together, we can redefine the standards of fashion.</p>
+
+        <h3>Thank you for visiting our About Us page. We look forward to being a part of your style story.</h3>
+    </div>
+
+</div>
+<footer>
+    <p>&copy; 2025 ClothingShop. All rights reserved.</p>
+    <a href="https://instagram.com">
+        <img src="images/ins.png" alt=Instagram width="20" height="20"/>
+    </a>
+    <a href="https://x.com">
+        <img src="images/x.png" alt=x/twitter width="20" height="20"/>
+    </a>
+
+</footer>
+<script>
+    // Load existing cart from localStorage or start fresh
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Update cart count on page load
+    document.getElementById('cart-count').textContent = cart.length;
+
+    // Add event listeners for add-to-cart buttons
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', () => {
+            const name = button.getAttribute('data-name');
+            const price = parseFloat(button.getAttribute('data-price'));
+
+            // Add to cart
+            cart.push({ name, price });
+
+            // Save updated cart
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Update cart count
+            document.getElementById('cart-count').textContent = cart.length;
+
+            console.log('Cart:', cart);
+        });
+    });
+</script>
+</body>
+</html>
