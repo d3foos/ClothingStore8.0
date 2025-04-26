@@ -15,11 +15,11 @@ builder.Services.AddDbContext<AppDbContext>(opts =>
 );
 
 var app = builder.Build();
-
+app.UseStaticFiles();
 // 2. Serve default/index.html for "/"
 app.UseDefaultFiles();
 // 3. Serve all static files from wwwroot
-app.UseStaticFiles();
+
 
 // 4. API endpoints
 app.MapGet("/api/products", async (AppDbContext db) =>
