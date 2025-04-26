@@ -7,104 +7,104 @@
 </head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <body class="page-bg">
+    <div class="page-container">
+        <!-- HEADER -->
+        <header>
+            <nav class="navbar">
+                <a href="index.html" class="logo">ClothingShop</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+                <a href="cart.html" class="cart-link">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </a>
+            </nav>
+        </header>
 
-<!-- HEADER -->
-<header>
-    <nav class="navbar">
-        <a href="index.html" class="logo">ClothingShop</a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="signup.html">Sign Up</a></li>
-        </ul>
-        <a href="cart.html" class="cart-link">
-            <i class="fa fa-shopping-cart"></i>
-            <span id="cart-count">0</span>
-        </a>
-    </nav>
-</header>
+        <!-- HERO BANNER -->
+        <section class="hero">
+            <div class="hero-text-box">
+                <h1 class="login">Discover Your Style</h1>
+                <p>Fresh arrivals for every season.</p>
+                <a href="#products" class="btn">Shop Now</a>
+            </div>
+        </section>
+        <section class="product-grid">
 
-<!-- HERO BANNER -->
-<section class="hero">
-    <div class="hero-text-box">
-        <h1 class="login">Discover Your Style</h1>
-        <p>Fresh arrivals for every season.</p>
-        <a href="#products" class="btn">Shop Now</a>
-    </div>
-</section>
-<section class="product-grid">
+            <div class="product-card">
+                <img src="/images/blue-t-shirt.jpg" alt="Blue T-Shirt">
+                <h3>Blue T-Shirt</h3>
+                <p>$25.00</p>
+                <button class="add-to-cart" data-name="Blue T-Shirt" data-price="25">Add to Cart</button>
+            </div>
 
-    <div class="product-card">
-        <img src="/images/blue-t-shirt.jpg" alt="Blue T-Shirt">
-        <h3>Blue T-Shirt</h3>
-        <p>$25.00</p>
-        <button class="add-to-cart" data-name="Blue T-Shirt" data-price="25">Add to Cart</button>
-    </div>
+            <div class="product-card">
+                <img src="/images/folded-laundry.jpg" alt="Folded Laundry Shirt">
+                <h3>Multiple Shirts Package</h3>
+                <p>$90.00</p>
+                <button class="add-to-cart" data-name="Multiple Shirts Package" data-price="90">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="/images/pants.jpg" alt="pants">
+                <h3>Pants</h3>
+                <p>$20.00</p>
+                <button class="add-to-cart" data-name="pants" data-price="20">Add to Cart</button>
+            </div>
 
-    <div class="product-card">
-        <img src="/images/folded-laundry.jpg" alt="Folded Laundry Shirt">
-        <h3>Multiple Shirts Package</h3>
-        <p>$90.00</p>
-        <button class="add-to-cart" data-name="Multiple Shirts Package" data-price="90">Add to Cart</button>
-    </div>
-    <div class="product-card">
-        <img src="/images/pants.jpg" alt="pants">
-        <h3>Pants</h3>
-        <p>$20.00</p>
-        <button class="add-to-cart" data-name="pants" data-price="20">Add to Cart</button>
-    </div>
-    
 
-</section>
+        </section>
 
-<!-- FILTER BAR -->
-<section class="filters">
-    <button data-cat="all" class="filter-btn active">All</button>
-    <button data-cat="Men" class="filter-btn">Men</button>
-    <button data-cat="Women" class="filter-btn">Women</button>
-    <button data-cat="Accessories" class="filter-btn">Accessories</button>
-</section>
+        <!-- FILTER BAR -->
+        <section class="filters">
+            <button data-cat="all" class="filter-btn active">All</button>
+            <button data-cat="Men" class="filter-btn">Men</button>
+            <button data-cat="Women" class="filter-btn">Women</button>
+            <button data-cat="Accessories" class="filter-btn">Accessories</button>
+        </section>
 
-<!-- PRODUCT GRID -->
-<main id="products" class="grid"></main>
+        <!-- PRODUCT GRID -->
+        <main id="products" class="grid"></main>
 
-<footer>
-    <p>&copy; 2025 ClothingShop. All rights reserved.</p>
-    <a href="https://instagram.com">
-        <img src="/images/ins.png" alt=Instagram width="20" height="20"/>
-    </a>
-    <a href="https://x.com">
-        <img src="/images/x.png" alt=x/twitter width="20" height="20"/>
-    </a>
+        <footer>
+            <p>&copy; 2025 ClothingShop. All rights reserved.</p>
+            <a href="https://instagram.com">
+                <img src="/images/ins.png" alt=Instagram width="20" height="20" />
+            </a>
+            <a href="https://x.com">
+                <img src="/images/x.png" alt=x/twitter width="20" height="20" />
+            </a>
 
-</footer>
-<script src="/scripts/products.js" defer></script>
-<script>
-    // Load existing cart from localStorage or start fresh
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        </footer>
+        <script src="/scripts/products.js" defer></script>
+        <script>
+            // Load existing cart from localStorage or start fresh
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // Update cart count on page load
-    document.getElementById('cart-count').textContent = cart.length;
-
-    // Add event listeners for add-to-cart buttons
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', () => {
-            const name = button.getAttribute('data-name');
-            const price = parseFloat(button.getAttribute('data-price'));
-
-            // Add to cart
-            cart.push({ name, price });
-
-            // Save updated cart
-            localStorage.setItem('cart', JSON.stringify(cart));
-
-            // Update cart count
+            // Update cart count on page load
             document.getElementById('cart-count').textContent = cart.length;
 
-            console.log('Cart:', cart);
-        });
-    });
-</script>
+            // Add event listeners for add-to-cart buttons
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', () => {
+                    const name = button.getAttribute('data-name');
+                    const price = parseFloat(button.getAttribute('data-price'));
+
+                    // Add to cart
+                    cart.push({ name, price });
+
+                    // Save updated cart
+                    localStorage.setItem('cart', JSON.stringify(cart));
+
+                    // Update cart count
+                    document.getElementById('cart-count').textContent = cart.length;
+
+                    console.log('Cart:', cart);
+                });
+            });
+        </script>
 </body>
 </html>
