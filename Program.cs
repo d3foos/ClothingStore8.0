@@ -4,30 +4,32 @@ using WebApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Add EF Core (keep this)
+// Kestrel settings (optional if running locally + Azure)
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5000);
+    options.ListenAnyIP(5001, listenOpts => listenOpts.UseHttps());
+});
+
+// 1. Connect to SQL Server database
 builder.Services.AddDbContext<AppDbContext>(opts =>
     opts.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
-// 2. Add Controllers for API endpoints (you missed this)
-builder.Services.AddControllers();
-
 var app = builder.Build();
 
-// 3. Middleware setup (correct order)
+// Serve static files (wwwroot)
+app.UseStaticFiles();
+app.UseDefaultFiles();
 
-app.UseDefaultFiles();  // serve index.html automatically
-app.UseStaticFiles();   // serve css, js, images
+// 2. API Endpoints
 
-// 4. Map your Controllers (missing before!)
-app.MapControllers();
-
-// 5. Minimal APIs you already had (products, register, login)
-
+// Get all products
 app.MapGet("/api/products", async (AppDbContext db) =>
     Results.Ok(await db.Products.ToListAsync())
 );
 
+// User registration (plain password)
 app.MapPost("/api/account/register", async (User newUser, AppDbContext db) =>
 {
     if (await db.Users.AnyAsync(u => u.Email == newUser.Email))
@@ -38,15 +40,18 @@ app.MapPost("/api/account/register", async (User newUser, AppDbContext db) =>
     return Results.Ok();
 });
 
+// User login (plain password check)
 app.MapPost("/api/account/login", async (User credentials, AppDbContext db) =>
 {
     var user = await db.Users.FirstOrDefaultAsync(u => u.Email == credentials.Email);
+
     if (user == null || user.PasswordHash != credentials.PasswordHash)
         return Results.BadRequest("Invalid email or password.");
+
     return Results.Ok();
 });
 
-// 6. Fallback anything else to index.html
+// Fallback to index.html for frontend routing
 app.MapFallbackToFile("index.html");
 
 app.Run();
