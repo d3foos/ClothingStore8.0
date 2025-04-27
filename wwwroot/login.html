@@ -49,32 +49,43 @@
 
     <!-- LOGIN LOGIC -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', () => {
             const loginForm = document.getElementById('login-form');
             const togglePwBtn = document.getElementById('toggle-pw');
             const passwordInput = document.getElementById('password');
 
-            loginForm.addEventListener('submit', function (e) {
+            loginForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
 
-                const email = document.getElementById('email').value.trim();
-                const password = document.getElementById('password').value.trim();
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
 
-                const users = JSON.parse(localStorage.getItem('users')) || [];
+                try {
+                    const response = await fetch('/api/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email, password })
+                    });
 
-                const matchingUser = users.find(user => user.email === email && user.password === password);
+                    const result = await response.json();
 
-                if (matchingUser) {
-                    localStorage.setItem('isLoggedIn', 'true');
-                    localStorage.setItem('userEmail', email);
-                    alert('Login successful!');
-                    window.location.href = 'index.html';
-                } else {
-                    alert('Incorrect email or password.');
+                    if (result.success) {
+                        localStorage.setItem('isLoggedIn', 'true');
+                        localStorage.setItem('userEmail', email);
+                        alert('Login successful!');
+                        window.location.href = 'index.html';
+                    } else {
+                        alert(result.message || 'Login failed.');
+                    }
+                } catch (error) {
+                    console.error('Login error:', error);
+                    alert('Error connecting to server.');
                 }
             });
 
-            togglePwBtn.addEventListener('click', function () {
+            togglePwBtn.addEventListener('click', () => {
                 if (passwordInput.type === 'password') {
                     passwordInput.type = 'text';
                     togglePwBtn.textContent = 'Hide';
@@ -85,6 +96,7 @@
             });
         });
     </script>
+
 
 </body>
 </html>
