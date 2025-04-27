@@ -160,7 +160,7 @@ a, button {
 
 
 .about-bg {
-    background: url('../images/1.jpg') center/cover no-repeat;
+    background: url('images/1.jpg') center/cover no-repeat;
     min-height: 100vh;
     background-attachment: fixed;
 }
@@ -387,7 +387,7 @@ footer {
     color: #666;
 }
 .page-bg {
-    background: url('../images/1.jpg') center/cover no-repeat;
+    background: url('images/1.jpg') center/cover no-repeat;
     min-height: 100vh;
     background-attachment: fixed;
 }

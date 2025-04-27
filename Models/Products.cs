@@ -1,11 +1,16 @@
-﻿namespace WebApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebApp.Models
 {
     public class Products
     {
-        public int     ProductID { get; set; }
-        public string  Name      { get; set; }
-        public decimal Price     { get; set; }
-        public string  ImagePath { get; set; }
-        public string  Category  { get; set; }
+        [Key]   // 👈 This tells EF Core that this is the primary key
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public decimal Price { get; set; }
+
+        // Add any other fields you need (like Description, Category, etc.)
     }
 }
