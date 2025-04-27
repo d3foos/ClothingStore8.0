@@ -3,25 +3,27 @@ using WebApp.Data;
 using WebApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(5000);
-    options.ListenAnyIP(5001, listenOpts => listenOpts.UseHttps());
-});
 
-// 1. Register EF Core
+// 1. Add EF Core (keep this)
 builder.Services.AddDbContext<AppDbContext>(opts =>
     opts.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
+// 2. Add Controllers for API endpoints (you missed this)
+builder.Services.AddControllers();
+
 var app = builder.Build();
-app.UseStaticFiles();
-// 2. Serve default/index.html for "/"
-app.UseDefaultFiles();
-// 3. Serve all static files from wwwroot
 
+// 3. Middleware setup (correct order)
 
-// 4. API endpoints
+app.UseDefaultFiles();  // serve index.html automatically
+app.UseStaticFiles();   // serve css, js, images
+
+// 4. Map your Controllers (missing before!)
+app.MapControllers();
+
+// 5. Minimal APIs you already had (products, register, login)
+
 app.MapGet("/api/products", async (AppDbContext db) =>
     Results.Ok(await db.Products.ToListAsync())
 );
@@ -44,7 +46,7 @@ app.MapPost("/api/account/login", async (User credentials, AppDbContext db) =>
     return Results.Ok();
 });
 
-// 5. Fallback any other route to index.html
+// 6. Fallback anything else to index.html
 app.MapFallbackToFile("index.html");
 
 app.Run();
