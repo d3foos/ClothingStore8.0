@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <title>ITGN 350 Assignment</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <body class="about-bg">
     <div class="page-container">
+
         <!-- HEADER -->
         <header>
             <nav class="navbar">
@@ -23,9 +24,32 @@
                     <span id="cart-count">0</span>
                 </a>
             </nav>
-        </header>
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const loggedIn = localStorage.getItem('loggedIn');
 
-        <!-- HERO BANNER -->
+                    if (loggedIn === 'true') {
+                        const navLinks = document.querySelector('.nav-links');
+                        if (navLinks) {
+                            navLinks.innerHTML = `
+                                                        <li><a href="index.html">Home</a></li>
+                                                        <li><a href="about.html">About</a></li>
+                                                        <li><a href="#" id="logout-link">Logout</a></li>
+                                                    `;
+                        }
+                    }
+
+                    // Logout handler
+                    const logoutLink = document.getElementById('logout-link');
+                    if (logoutLink) {
+                        logoutLink.addEventListener('click', () => {
+                            localStorage.removeItem('loggedIn');
+                            window.location.href = 'index.html'; // or login.html
+                        });
+                    }
+                });
+            </script>
+        </header><!-- HERO -->
         <section class="hero">
             <div class="hero-text-box">
                 <h1 class="login">Discover Your Style</h1>
@@ -34,40 +58,70 @@
             </div>
         </section>
 
-        <section class="product-grid">
-            <div class="product-card">
-                <img src="images/blue-t-shirt.jpg" alt="Blue T-Shirt">
-                <h3>Blue T-Shirt</h3>
-                <p>$25.00</p>
-                <button class="add-to-cart" data-name="Blue T-Shirt" data-price="25">Add to Cart</button>
-            </div>
-
-            <div class="product-card">
-                <img src="images/folded-laundry.jpg" alt="Folded Laundry Shirt">
-                <h3>Multiple Shirts Package</h3>
-                <p>$90.00</p>
-                <button class="add-to-cart" data-name="Multiple Shirts Package" data-price="90">Add to Cart</button>
-            </div>
-
-            <div class="product-card">
-                <img src="images/pants.jpg" alt="pants">
-                <h3>Pants</h3>
-                <p>$20.00</p>
-                <button class="add-to-cart" data-name="pants" data-price="20">Add to Cart</button>
+        <!-- MEN'S COLLECTION -->
+        <section id="section-men" class="section-container">
+            <h2 class="section-title">Men's Collection</h2>
+            <div class="category-grid">
+                <div class="product-card">
+                    <img src="images/blue-t-shirt.jpg" alt="Blue T-Shirt">
+                    <h3>Blue T-Shirt</h3>
+                    <p>$25.00</p>
+                    <button class="add-to-cart" data-name="Blue T-Shirt" data-price="25">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="images/folded-laundry.jpg" alt="Multiple Shirts Package">
+                    <h3>Multiple Shirts Package</h3>
+                    <p>$90.00</p>
+                    <button class="add-to-cart" data-name="Multiple Shirts Package" data-price="90">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="images/pants.jpg" alt="Pants">
+                    <h3>Pants</h3>
+                    <p>$20.00</p>
+                    <button class="add-to-cart" data-name="Pants" data-price="20">Add to Cart</button>
+                </div>
             </div>
         </section>
 
-        <!-- FILTER BAR -->
-        <section class="filters">
-            <button data-cat="all" class="filter-btn active">All</button>
-            <button data-cat="Men" class="filter-btn">Men</button>
-            <button data-cat="Women" class="filter-btn">Women</button>
-            <button data-cat="Accessories" class="filter-btn">Accessories</button>
+        <!-- WOMEN'S COLLECTION -->
+        <section id="section-women" class="section-container">
+            <h2 class="section-title">Women's Collection</h2>
+            <div class="category-grid">
+                <div class="product-card">
+                    <img src="images/4.png" alt="Women's Shirt">
+                    <h3>Women's Shirt</h3>
+                    <p>$30.00</p>
+                    <button class="add-to-cart" data-name="Women's Shirt" data-price="30">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="images/5.png" alt="Elegant Dress">
+                    <h3>Elegant Dress</h3>
+                    <p>$60.00</p>
+                    <button class="add-to-cart" data-name="Elegant Dress" data-price="60">Add to Cart</button>
+                </div>
+            </div>
         </section>
 
-        <!-- PRODUCT GRID -->
-        <main id="products" class="grid"></main>
+        <!-- ACCESSORIES COLLECTION -->
+        <section id="section-accessories" class="section-container">
+            <h2 class="section-title">Accessories</h2>
+            <div class="category-grid">
+                <div class="product-card">
+                    <img src="images/6.jpeg" alt="Stylish Hat">
+                    <h3>Stylish Hat</h3>
+                    <p>$15.00</p>
+                    <button class="add-to-cart" data-name="Stylish Hat" data-price="15">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="images/7.jpeg" alt="Warm Scarf">
+                    <h3>Warm Scarf</h3>
+                    <p>$25.00</p>
+                    <button class="add-to-cart" data-name="Warm Scarf" data-price="25">Add to Cart</button>
+                </div>
+            </div>
+        </section>
 
+        <!-- FOOTER -->
         <footer>
             <p>&copy; 2025 ClothingShop. All rights reserved.</p>
             <a href="https://instagram.com">
@@ -78,45 +132,47 @@
             </a>
         </footer>
 
-        <!-- Keep products.js -->
-        <script src="/scripts/products.js" defer></script>
-
-        <!-- Updated Cart Script -->
+        <!-- CART  -->
         <script>
-            // Load existing cart from localStorage or start fresh
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-            function updateCartCount() {
+            document.addEventListener('DOMContentLoaded', function () {
+                // Load cart
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
                 const cartCount = document.getElementById('cart-count');
-                if (cartCount) {
-                    cartCount.textContent = cart.length;
-                }
-            }
+                if (cartCount) cartCount.textContent = cart.length;
 
-            function saveCart() {
-                localStorage.setItem('cart', JSON.stringify(cart));
-                updateCartCount();
-            }
-
-            function addToCart(name, price) {
-                cart.push({ name, price });
-                saveCart();
-            }
-
-            document.addEventListener('DOMContentLoaded', () => {
-                // Update cart count on page load
-                updateCartCount();
-
-                // Attach add-to-cart buttons
+                // Add to cart buttons
                 document.querySelectorAll('.add-to-cart').forEach(button => {
                     button.addEventListener('click', () => {
                         const name = button.getAttribute('data-name');
                         const price = parseFloat(button.getAttribute('data-price'));
-                        addToCart(name, price);
+
+                        cart.push({ name, price });
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        if (cartCount) cartCount.textContent = cart.length;
                     });
                 });
+
+                // Check login status
+                const navLinks = document.querySelector('.nav-links');
+                if (localStorage.getItem('isLoggedIn') === 'true' && navLinks) {
+                    navLinks.innerHTML = `
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="#" id="logout-link">Logout</a></li>
+                `;
+
+                    const logoutLink = document.getElementById('logout-link');
+                    logoutLink.addEventListener('click', function () {
+                        localStorage.removeItem('isLoggedIn');
+                        localStorage.removeItem('userEmail');
+                        alert('Logged out successfully!');
+                        window.location.reload();
+                    });
+                }
             });
         </script>
+
+
 
     </div>
 </body>

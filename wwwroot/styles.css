@@ -41,6 +41,7 @@ a, button {
 .text-box {
     color: inherit;
     margin-top: -20rem;
+    overflow: hidden;
 }
 
 .navbar .logo {
@@ -67,12 +68,13 @@ a, button {
 
 /* --- HERO BANNER --- */
 .hero {
-    height: 60vh;
+    min-height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-
+    overflow: hidden; /* THIS makes sure nothing spills outside */
+    margin-bottom: -25em; 
 }
 .hero-content { text-align: center; }
 .hero .btn {
@@ -87,26 +89,6 @@ a, button {
 }
 .hero .btn:hover { background: black;color: white;}
 
-/* --- FILTER BAR --- */
-.filters {
-    text-align: center;
-    margin: 2rem 0 1rem;
-}
-.filter-btn {
-    padding: 0.5rem 1rem;
-    margin: 0 0.25rem;
-    border: 1px solid black;
-    background: white;
-    color: black;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-.filter-btn.active,
-.filter-btn:hover {
-    background: black;
-    color: white;
-}
 
 /* --- PRODUCT GRID & CARDS --- */
 .grid {
@@ -424,7 +406,7 @@ footer {
     .product-card img:hover {
         width: 100%;
         height: 250px;
-        object-fit: cover;
+        object-fit: contain;
         
     }
 
@@ -563,6 +545,89 @@ footer {
     transition: background-color 0.3s ease;
 }
 
-    .checkout-btn:hover {
-        background-color: #45a049;
+.section-container {
+    padding: 60px 20px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #222;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-card {
+    background: #ffffffee;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    .product-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: contain;
+    }
+
+.add-to-cart {
+    padding: 10px;
+    margin: 2px;
+    border-radius: 8px;
+    background: #3498db;
+    border: none;
+    color: white;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+    .add-to-cart:hover {
+        background: #2980b9;
+    }
+    .section-men{
+     margin-top: -25em;
+    }
+.filters {
+    text-align: center;
+   
+}
+
+.filter-buttons {
+    display: inline-flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    background-color: #3498db;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+    .filter-btn:hover {
+        background-color: #2980b9;
+        transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+        background-color: black;
     }

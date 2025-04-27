@@ -22,6 +22,31 @@
             <i class="fa fa-shopping-cart"></i>
             <span id="cart-count">0</span>
         </a>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const loggedIn = localStorage.getItem('loggedIn');
+
+                if (loggedIn === 'true') {
+                    const navLinks = document.querySelector('.nav-links');
+                    if (navLinks) {
+                        navLinks.innerHTML = `
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="#" id="logout-link">Logout</a></li>
+                        `;
+                    }
+                }
+
+                // Logout handler
+                const logoutLink = document.getElementById('logout-link');
+                if (logoutLink) {
+                    logoutLink.addEventListener('click', () => {
+                        localStorage.removeItem('loggedIn');
+                        window.location.href = 'index.html'; // or login.html
+                    });
+                }
+            });
+        </script>
     </nav>
 
     <!-- MAIN CONTENT -->
