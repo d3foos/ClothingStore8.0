@@ -33,8 +33,8 @@
                 <a href="#products" class="btn">Shop Now</a>
             </div>
         </section>
-        <section class="product-grid">
 
+        <section class="product-grid">
             <div class="product-card">
                 <img src="images/blue-t-shirt.jpg" alt="Blue T-Shirt">
                 <h3>Blue T-Shirt</h3>
@@ -48,14 +48,13 @@
                 <p>$90.00</p>
                 <button class="add-to-cart" data-name="Multiple Shirts Package" data-price="90">Add to Cart</button>
             </div>
+
             <div class="product-card">
                 <img src="images/pants.jpg" alt="pants">
                 <h3>Pants</h3>
                 <p>$20.00</p>
                 <button class="add-to-cart" data-name="pants" data-price="20">Add to Cart</button>
             </div>
-
-
         </section>
 
         <!-- FILTER BAR -->
@@ -72,39 +71,53 @@
         <footer>
             <p>&copy; 2025 ClothingShop. All rights reserved.</p>
             <a href="https://instagram.com">
-                <img src="images/ins.png" alt=Instagram width="20" height="20" />
+                <img src="images/ins.png" alt="Instagram" width="20" height="20" />
             </a>
             <a href="https://x.com">
-                <img src="images/x.png" alt=x/twitter width="20" height="20" />
+                <img src="images/x.png" alt="X/Twitter" width="20" height="20" />
             </a>
-
         </footer>
+
+        <!-- Keep products.js -->
         <script src="/scripts/products.js" defer></script>
+
+        <!-- Updated Cart Script -->
         <script>
             // Load existing cart from localStorage or start fresh
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            // Update cart count on page load
-            document.getElementById('cart-count').textContent = cart.length;
+            function updateCartCount() {
+                const cartCount = document.getElementById('cart-count');
+                if (cartCount) {
+                    cartCount.textContent = cart.length;
+                }
+            }
 
-            // Add event listeners for add-to-cart buttons
-            document.querySelectorAll('.add-to-cart').forEach(button => {
-                button.addEventListener('click', () => {
-                    const name = button.getAttribute('data-name');
-                    const price = parseFloat(button.getAttribute('data-price'));
+            function saveCart() {
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+            }
 
-                    // Add to cart
-                    cart.push({ name, price });
+            function addToCart(name, price) {
+                cart.push({ name, price });
+                saveCart();
+            }
 
-                    // Save updated cart
-                    localStorage.setItem('cart', JSON.stringify(cart));
+            document.addEventListener('DOMContentLoaded', () => {
+                // Update cart count on page load
+                updateCartCount();
 
-                    // Update cart count
-                    document.getElementById('cart-count').textContent = cart.length;
-
-                    console.log('Cart:', cart);
+                // Attach add-to-cart buttons
+                document.querySelectorAll('.add-to-cart').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const name = button.getAttribute('data-name');
+                        const price = parseFloat(button.getAttribute('data-price'));
+                        addToCart(name, price);
+                    });
                 });
             });
         </script>
+
+    </div>
 </body>
 </html>
