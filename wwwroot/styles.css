@@ -1,8 +1,8 @@
 ﻿/* --- NAVBAR --- */
 
 :root {
-    --font-family: 'Arial', sans-serif;   /* pick your preferred font stack */
-    --text-color: #333333;                /* your default body text color */
+    --font-family: 'Arial', sans-serif;   /* font stack */
+    --text-color: #333333;                /* default body text color */
     --heading-color: #222222;             /* optionally a darker shade for headings */
     --base-font-size: 16px;               /* can adjust up or down globally */
     --line-height: 1.5;                   /* good for readability */
@@ -73,7 +73,7 @@ a, button {
     align-items: center;
     justify-content: center;
     color: white;
-    overflow: hidden; /* THIS makes sure nothing spills outside */
+    overflow: hidden; 
     margin-bottom: -25em; 
 }
 .hero-content { text-align: center; }
@@ -272,7 +272,7 @@ a, button {
 .navbar {
     display: flex;
     justify-content: flex-start; /* aligns all to the left */
-    gap: 60rem; /* add this to create controlled spacing */
+    gap: 60rem; /* controlled spacing */
     align-items: center;
     margin-bottom: 2rem;
     padding: 1rem 2rem;

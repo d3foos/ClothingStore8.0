@@ -75,8 +75,8 @@
                         localStorage.setItem('userEmail', email);
                         window.location.href = 'index.html';
                     } else {
-                        const result = await response.text();
-                        alert('Login failed: ' + result);
+                        const result = await response.json();
+                        alert(result.message || 'Login failed.');
                     }
                 } catch (error) {
                     console.error('Login error:', error);
@@ -95,6 +95,7 @@
             });
         });
     </script>
+
 
 </body>
 </html>
